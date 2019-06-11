@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="muhelsaied">
+  <link rel="stylesheet" href="./bootstrap.min.css"/>
+  <style media="screen">
+    *{
+      margin:0,
+      padding:0
+    }
+    .counter{
+      font-size:10rem;
+      font-weight:600;
+      display:flex;
+      flex-direction:row
+
+    }
+    .btn{
+      width:50%;
+    }
+    @media screen and (max-width:400px){
+      .counter{
+        flex-direction:column;
+      }
+      .btn{
+        margin-top:3%;
+        width:90%;
+      }
+
+    }
+  </style>
+
+  </head>
+  <body>
+    <div class="container my-5 py-2">
+      <div class="card rounded p-3 mt-3 mx-auto bg-success">
+        <div class='counter d-block mx-auto p-2 my-2 text-white' id="content">
+            0
+        </div>
+        <div class='counter-btn'>
+          <button class="btn btn-primary d-block mx-auto " id="counter">click</button>
+          <button class="btn btn-warning d-block mx-auto " id="reset">reset</button>
+        </div>
+      </div>
+    </div>
+
+
+    <script>
+      let count = 0
+      const counterBtn = document.querySelector('#counter');
+      const resetBtn = document.querySelector('#reset');
+      const body = document.querySelector('#content');
+      counterBtn.addEventListener('click',()=>{
+          count++
+          body.innerHTML = count
+        }
+      )
+      resetBtn.addEventListener('click',()=>{
+        count = 0
+        body.innerHTML = count
+      })
+    </script>
+  </body>
+</html>
