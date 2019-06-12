@@ -43,7 +43,6 @@
             0
         </div>
         <div class='counter-btn'>
-          <button class="btn btn-primary d-block mx-auto " id="counter">click</button>
           <button class="btn btn-warning d-block mx-auto " id="reset">reset</button>
         </div>
       </div>
@@ -55,7 +54,7 @@
       const counterBtn = document.querySelector('#counter');
       const resetBtn = document.querySelector('#reset');
       const body = document.querySelector('#content');
-      counterBtn.addEventListener('click',()=>{
+      body.addEventListener('click',()=>{
           count++
           body.innerHTML = count
         }
