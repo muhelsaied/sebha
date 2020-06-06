@@ -10,17 +10,24 @@
   <link rel="stylesheet" href="./bootstrap.min.css"/>
   <style media="screen">
     *{
-      margin:0,
-      padding:0
+      margin:0;
+      padding:0;
     }
-    .counter{
-      font-size:10rem;
-      font-weight:600;
-      display:flex;
-      flex-direction:row;
-      text-align: center;
-          cursor: pointer;
 
+    .counter-display{
+      padding: 2rem !important;
+      margin: auto;
+      border: 2px solid;
+      max-width: 300px;
+      border-radius: 50% !important;
+      height: 40vh;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      justify-content: center;
+      font-size: 45px;
+      font-weight: 700;
+      width: 100%;
     }
     .btn{
       width:50%;
@@ -42,32 +49,48 @@
   </head>
   <body>
     <div class="container my-5 py-2">
-      <div class="card rounded counter d-block mx-auto p-2 my-5 text-danger" id="content">
-        <div class='' >
+      <div class="d-block mx-auto p-2 my-5 text-danger text-center" >
+        <div class='counter-display' id="content" >
             0
         </div>
       </div>
-      <div class='counter-btn'>
-          <button class="btn btn-warning d-block mx-auto " id="reset">reset</button>
+      <div class='counter-btn d-felx flex-column  justify-content-between text-center'>
+          <button class="btn btn-warning my-2" id="reset">reset</button>
         </div>
+        <div class='counter-btn d-felx flex-column  justify-content-between text-center' id = "total-counted">
+
+        </div>
+        
     </div>
 
 
     <script>
       let count = 0
-      let totlaCount = [];
-      const counterBtn = document.querySelector('#counter');
-      const resetBtn = document.querySelector('#reset');
-      const body = document.querySelector('#content');
+      let totalCount = 0
+      const resetBtn = document.querySelector('#reset')
+      const totalCounted = document.querySelector("#total-counted")
+      const body = document.querySelector('#content')
+
       body.addEventListener('click',()=>{
           count++
+          if (count == 100){
+          totalCount ++
+          count = 0
+          totalCount = totalCount * 100
+          
+          }
           body.innerHTML = count
+          totalCounted.innerHTML  = totalCount 
         }
       )
       resetBtn.addEventListener('click',()=>{
         count = 0
         body.innerHTML = count
       })
+
+
+
+
     </script>
   </body>
 </html>
