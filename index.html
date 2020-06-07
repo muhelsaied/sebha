@@ -32,6 +32,12 @@
     .btn{
       width:50%;
     }
+    #total-counted{
+      position: absolute;
+      top: 10%;
+      left: 10%;
+      color: rgb(104, 31, 111);
+    }
     @media screen and (max-width:400px){
       .counter{
         flex-direction:column;
@@ -57,7 +63,7 @@
       <div class='counter-btn d-felx flex-column  justify-content-between text-center'>
           <button class="btn btn-warning my-2" id="reset">reset</button>
         </div>
-        <div class='counter-btn d-felx flex-column  justify-content-between text-center' id = "total-counted">
+        <div class='text-center text-danger' id = "total-counted">
 
         </div>
         
@@ -76,11 +82,10 @@
           if (count == 100){
           totalCount ++
           count = 0
-          totalCount = totalCount * 100
+          totalCounted.innerHTML  = totalCount 
           
           }
           body.innerHTML = count
-          totalCounted.innerHTML  = totalCount 
         }
       )
       resetBtn.addEventListener('click',()=>{
