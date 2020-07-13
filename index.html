@@ -13,14 +13,22 @@
       margin:0;
       padding:0;
     }
+    .main-btn{
+      color: #eee;
+      background: rgb(92, 37, 105);
+      border: navajowhite;
+      border-radius: 100%;
+      height: 75px;
+      width: 75px;
+    }
 
     .counter-display{
       padding: 2rem !important;
-      margin: auto;
+      margin: 5% auto;
       border: 2px solid;
       max-width: 300px;
       border-radius: 50% !important;
-      height: 40vh;
+      height: 70vh;
       display: flex;
       align-items: center;
       text-align: center;
@@ -29,16 +37,40 @@
       font-weight: 700;
       width: 100%;
     }
-    .btn{
-      width:50%;
-    }
-    #total-counted{
+    #total-counted,#reset{
       position: absolute;
       top: 10%;
+    }
+    #total-counted{
       left: 10%;
-      color: rgb(104, 31, 111);
+      align-items: center;
+      text-align: center;
+      justify-content: center;
+      display: flex;
+
+    }
+    #reset{
+      right: 10%;
+      color: #eee;
+      
+    }
+    #reset:hover {
+      color: rgb(104, 32, 111);
+      background: #eee;
+      box-shadow: 6px 6px 6px rgb(92, 37, 105);
+      transition: all .75s ease-in-out;
+    }
+    @media screen and (max-width:900px){
+      .counter-display{
+        height: 60vh;
+        max-width: 500px;
+      }
     }
     @media screen and (max-width:400px){
+      .counter-display{
+        height: 40vh;
+        max-width: 250px;
+      }
       .counter{
         flex-direction:column;
         box-shadow: 11px 17px 17px 5px rgba(0,0,0,0.6);
@@ -56,15 +88,22 @@
   <body>
     <div class="container my-5 py-2">
       <div class="d-block mx-auto p-2 my-5 text-danger text-center" >
-        <div class='counter-display' id="content" >
+        <div class='counter-display main-btn' id="content" >
             0
         </div>
       </div>
-      <div class='counter-btn d-felx flex-column  justify-content-between text-center'>
-          <button class="btn btn-warning my-2" id="reset">reset</button>
+      <div class=''>
+          <button class= "main-btn" id="reset">reset</button>
         </div>
-        <div class='text-center text-danger' id = "total-counted">
+        <div class='main-btn' id = "total-counted">
+          0
+        </div>
 
+        <div class='counter-btn d-felx justify-content-between text-center'>
+          <button class="main-btn" id="first">33</button>
+          <button class="main-btn" id="sec">100</button>
+          <button class="main-btn" id="third">1000</button>
+          <button class="main-btn" id="fourth">open</button>
         </div>
         
     </div>
@@ -73,24 +112,62 @@
     <script>
       let count = 0
       let totalCount = 0
+      let targetCount = 0
       const resetBtn = document.querySelector('#reset')
       const totalCounted = document.querySelector("#total-counted")
       const body = document.querySelector('#content')
 
+      const thirtythreeBtn = document.querySelector('#first')
+      const hundredBtn = document.querySelector('#sec')
+      const thoundBtn = document.querySelector('#third')
+      const openBtn = document.querySelector('#fourth')
+
+      //style counter button
+      const btnStyle = (btn ,color,background) =>{
+        btn.style.background = color
+        btn.style.color = background
+      }
+      const mainBtn = (btn) =>{
+        btnStyle(btn,"#eee","rgb(104, 32, 111)")
+      }
+      const otherBtn = (btn) => {
+        btnStyle(btn,"rgb(104, 32, 111)","#eee")
+      }
+      
+      const countFunc = (num , main_Btn , btn_1, btn_2, btn_3)=>{
+        targetCount = num
+        totalCount = 0
+        count = 0 
+        mainBtn(main_Btn)
+        otherBtn(btn_1)
+        otherBtn(btn_2)
+        otherBtn(btn_3)
+        body.innerHTML = count
+        totalCounted.innerHTML  = totalCount 
+
+      }
+
+      thirtythreeBtn.addEventListener("click",() =>countFunc(33,thirtythreeBtn,hundredBtn,thoundBtn,openBtn))
+      hundredBtn.addEventListener("click",() => countFunc(100,hundredBtn,thirtythreeBtn,thoundBtn,openBtn))
+      thoundBtn.addEventListener("click",() => countFunc(1000,thoundBtn,thirtythreeBtn,hundredBtn,openBtn))
+      openBtn.addEventListener("click",() => countFunc(9999999,openBtn,thirtythreeBtn,hundredBtn,thoundBtn))
+
       body.addEventListener('click',()=>{
           count++
-          if (count == 100){
+          if (count == targetCount){
           totalCount ++
           count = 0
-          totalCounted.innerHTML  = totalCount 
-          
+          console.log(totalCount +": 1")
           }
+          totalCounted.innerHTML  = totalCount 
           body.innerHTML = count
         }
       )
       resetBtn.addEventListener('click',()=>{
         count = 0
+        totalCount = 0
         body.innerHTML = count
+        totalCounted.innerHTML  = totalCount 
       })
 
 
