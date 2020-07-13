@@ -166,6 +166,8 @@
           totalCount ++
           count = 0
           sound.play()
+          mainCircle.innerHTML = `${totalCount}`
+          window.navigator.vibrate(200);
           mainCircle.style.background = "rgb(5, 153, 177)"
           mainCircle.style.color = "#eee"
           mainCircle.style.fontSize = "70px" 
@@ -174,10 +176,10 @@
           mainCircle.style.background = "#eee"
           mainCircle.style.color = "rgb(5, 153, 177)"
           mainCircle.style.fontSize = "45px" 
+          totalCounted.innerHTML  = totalCount
+          mainCircle.innerHTML = count
 
           }
-          totalCounted.innerHTML  = totalCount 
-          mainCircle.innerHTML = count
           
         }
       )
