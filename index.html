@@ -58,15 +58,13 @@
 
     }
     .counter-btn{
-      display: flex;
-      flex-direction: row;
-      justify-content: space-around;
-      padding: 20px;
+      display: block;
       align-items: center;
       position: absolute;
       bottom: 5%;
-      max-width: 100vw;
       width: 100%;
+      margin: 0 auto;
+      text-align: center;
     }
     @media screen and (max-width: 900px){
       .counter-display{ 
@@ -102,12 +100,15 @@
         </div>
       </div>
 
+      <div class="container">
         <div class='counter-btn'>
           <button class="main-btn" id="first">33</button>
           <button class="main-btn" id="sec">100</button>
           <button class="main-btn" id="third">1000</button>
           <button class="main-btn" id="fourth">open</button>
         </div>
+      </div>
+        
         
     </div>
 
