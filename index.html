@@ -84,6 +84,9 @@
 
   </head>
   <body>
+    <audio >
+      <source src="./Baby Chicks-SoundBible.com-2811441.mp3" type="audio/mpeg">
+    </audio>
     <div class="container">
       <div class="top-counter">
         <div class=''>
@@ -122,6 +125,8 @@
       const thoundBtn = document.querySelector('#third')
       const openBtn = document.querySelector('#fourth')
 
+      const sound = document.querySelector('audio')
+
       //style counter button
       const btnStyle = (btn ,color,background) =>{
         btn.style.background = color
@@ -157,7 +162,7 @@
           if (count == targetCount){
           totalCount ++
           count = 0
-          console.log(totalCount +": 1")
+          sound.play()
           }
           totalCounted.innerHTML  = totalCount 
           body.innerHTML = count
