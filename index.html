@@ -12,18 +12,21 @@
       --mainColor:rgb(92, 37, 105);
       --color1:rgb(5, 153, 177);
       --mainWhite : #eee;
+      --mainTransation : all 0.2 ease-in-out;
     }
     *{
       margin:0;
       padding:0;
     }
     .main-btn{
-      color: var(--mainWhite);
-      background: var(--color1);
-      border: navajowhite;
+      color: var(--color1);
+      border: 5px solid var(--color1);
+      background-color: var(--mainWhite);
+      box-shadow: 2px 5px 15px rgba(0, 0, 0,.2);
       border-radius: 100%;
       height: 65px;
       width: 65px;
+      transition: var(--mainTransation);
     }
     .top-counter{
       display: flex;
@@ -34,10 +37,8 @@
     .counter-display{
       padding: 1rem !important;
       margin: .25rem auto;
-      border: 2px solid;
-      background: var(--color1);
-      border-color: var(--color1) ;
-      color: var(--mainWhite);
+      border: 7px solid var(--color1) ;
+      color: var(--color1);
       max-width: 30vw;
       border-radius: 50% !important;
       height: 50vh;
@@ -48,6 +49,7 @@
       font-size: 45px;
       font-weight: 700;
       width: 100%;
+      transition: var(--mainTransation);
     }
 
     #total-counted{
@@ -119,7 +121,7 @@
       let targetCount = 0
       const resetBtn = document.querySelector('#reset')
       const totalCounted = document.querySelector("#total-counted")
-      const body = document.querySelector('#content')
+      const mainCircle = document.querySelector('#content')
 
       const thirtythreeBtn = document.querySelector('#first')
       const hundredBtn = document.querySelector('#sec')
@@ -134,10 +136,10 @@
         btn.style.color = background
       }
       const mainBtn = (btn) =>{
-        btnStyle(btn,"#eee","rgb(5, 153, 177)")
+        btnStyle(btn,"rgb(5, 153, 177)","#eee")
       }
       const otherBtn = (btn) => {
-        btnStyle(btn,"rgb(5, 153, 177)","#eee")
+        btnStyle(btn,"#eee","rgb(5, 153, 177)",)
       }
       
       const countFunc = (num , main_Btn , btn_1, btn_2, btn_3)=>{
@@ -148,7 +150,7 @@
         otherBtn(btn_1)
         otherBtn(btn_2)
         otherBtn(btn_3)
-        body.innerHTML = count
+        mainCircle.innerHTML = count
         totalCounted.innerHTML  = totalCount 
 
       }
@@ -158,21 +160,31 @@
       thoundBtn.addEventListener("click",() => countFunc(1000,thoundBtn,thirtythreeBtn,hundredBtn,openBtn))
       openBtn.addEventListener("click",() => countFunc(9999999,openBtn,thirtythreeBtn,hundredBtn,thoundBtn))
 
-      body.addEventListener('click',()=>{
+      mainCircle.addEventListener('click',()=>{
           count++
           if (count == targetCount){
           totalCount ++
           count = 0
           sound.play()
+          mainCircle.style.background = "rgb(5, 153, 177)"
+          mainCircle.style.color = "#eee"
+          mainCircle.style.fontSize = "70px" 
+          }
+          else{
+          mainCircle.style.background = "#eee"
+          mainCircle.style.color = "rgb(5, 153, 177)"
+          mainCircle.style.fontSize = "45px" 
+
           }
           totalCounted.innerHTML  = totalCount 
-          body.innerHTML = count
+          mainCircle.innerHTML = count
+          
         }
       )
       resetBtn.addEventListener('click',()=>{
         count = 0
         totalCount = 0
-        body.innerHTML = count
+        mainCircle.innerHTML = count
         totalCounted.innerHTML  = totalCount 
       })
 
