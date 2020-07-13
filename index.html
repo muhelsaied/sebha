@@ -7,28 +7,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="muhelsaied">
-  <link rel="stylesheet" href="./bootstrap.min.css"/>
   <style media="screen">
+    :root{
+      --mainColor:rgb(92, 37, 105);
+      --color1:rgb(5, 153, 177);
+      --mainWhite : #eee;
+    }
     *{
       margin:0;
       padding:0;
     }
     .main-btn{
-      color: #eee;
-      background: rgb(92, 37, 105);
+      color: var(--mainWhite);
+      background: var(--color1);
       border: navajowhite;
       border-radius: 100%;
-      height: 75px;
-      width: 75px;
+      height: 65px;
+      width: 65px;
     }
-
+    .top-counter{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 1rem;
+    }
     .counter-display{
-      padding: 2rem !important;
-      margin: 5% auto;
+      padding: 1rem !important;
+      margin: .25rem auto;
       border: 2px solid;
-      max-width: 500px;
+      background: var(--color1);
+      border-color: var(--color1) ;
+      color: var(--mainWhite);
+      max-width: 30vw;
       border-radius: 50% !important;
-      height: 70vh;
+      height: 50vh;
       display: flex;
       align-items: center;
       text-align: center;
@@ -37,69 +49,54 @@
       font-weight: 700;
       width: 100%;
     }
-    #total-counted,#reset{
-      position: absolute;
-      top: 10%;
-    }
+
     #total-counted{
-      left: 10%;
       align-items: center;
       text-align: center;
       justify-content: center;
       display: flex;
 
     }
-    #reset{
-      right: 10%;
-      color: #eee;
-      
+    .counter-btn{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      padding: 20px;
+      align-items: center;
+      margin-top: 1%;
     }
-    #reset:hover {
-      color: rgb(104, 32, 111);
-      background: #eee;
-      box-shadow: 6px 6px 6px rgb(92, 37, 105);
-      transition: all .75s ease-in-out;
+    @media screen and (max-width: 900px){
+      .counter-display{ 
+      max-width: 60vw;
+      height: 50vh;
     }
-    @media screen and (max-width:900px){
-      .counter-display{
-        height: 60vh;
-        max-width: 500px;
-      }
     }
-    @media screen and (max-width:400px){
-      .counter-display{
-        height: 30vh;
-        max-width: 200px;
-      }
-      .counter{
-        flex-direction:column;
-        box-shadow: 11px 17px 17px 5px rgba(0,0,0,0.6);
-      }
-      .btn{
-        margin-top:3%;
-        width:90%;
-        
-      }
-
+    @media screen and (max-width: 500px){
+      .counter-display{ 
+      max-width: 70vw;
+      height: 40vh;
+    }
     }
   </style>
 
   </head>
   <body>
-    <div class="container py-5">
-      <div class="d-block mx-auto py-5 text-danger text-center" >
-        <div class='counter-display main-btn' id="content" >
-            0
-        </div>
-      </div>
-      <div class=''>
+    <div class="container">
+      <div class="top-counter">
+        <div class=''>
           <button class= "main-btn" id="reset">reset</button>
         </div>
         <div class='main-btn' id = "total-counted">
           0
         </div>
+      </div>
+      <div class="text-center" >
+        <div class='counter-display' id="content" >
+            0
+        </div>
+      </div>
 
-        <div class='counter-btn d-felx justify-content-between text-center'>
+        <div class='counter-btn'>
           <button class="main-btn" id="first">33</button>
           <button class="main-btn" id="sec">100</button>
           <button class="main-btn" id="third">1000</button>
@@ -128,10 +125,10 @@
         btn.style.color = background
       }
       const mainBtn = (btn) =>{
-        btnStyle(btn,"#eee","rgb(104, 32, 111)")
+        btnStyle(btn,"#eee","rgb(5, 153, 177)")
       }
       const otherBtn = (btn) => {
-        btnStyle(btn,"rgb(104, 32, 111)","#eee")
+        btnStyle(btn,"rgb(5, 153, 177)","#eee")
       }
       
       const countFunc = (num , main_Btn , btn_1, btn_2, btn_3)=>{
