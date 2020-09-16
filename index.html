@@ -68,6 +68,26 @@
       margin: 0 auto;
       text-align: center;
     }
+    .progress-bar-div {
+      width: 30%;
+      margin:0 auto;
+      display:flex;
+      flex-direction :row;
+      /* background : var(--mainWhite) */
+    }
+
+    .progress-bar,.progress-bar-empty {
+      width: 0;
+      height: 25px;
+      background-color:var(--color1);
+      text-align: center;
+      line-height: 25px;
+      color: var(--mainWhite);
+    }
+    .progress-bar-empty {
+      width: 100%;
+      background-color:var(--mainWhite);
+    }
     @media screen and (max-width: 900px){
       .counter-display{ 
       max-width: 60vw;
@@ -101,6 +121,12 @@
             0
         </div>
       </div>
+      <div class="container">
+        <div class="progress-bar-div" >
+            <div class="progress-bar"></div>
+            <div class="progress-bar-empty"></div>
+        </div>
+      </div>
 
       <div class="container">
         <div class='counter-btn'>
@@ -122,6 +148,8 @@
       const resetBtn = document.querySelector('#reset')
       const totalCounted = document.querySelector("#total-counted")
       const mainCircle = document.querySelector('#content')
+      const progressBarEmpty = document.querySelector('.progress-bar-empty')
+      const progressBar = document.querySelector('.progress-bar')
 
       const thirtythreeBtn = document.querySelector('#first')
       const hundredBtn = document.querySelector('#sec')
@@ -162,6 +190,9 @@
 
       mainCircle.addEventListener('click',()=>{
           count++
+          progressBar.style.width = `${(count / targetCount) * 100 }%`
+          progressBar.innerHTML = `${((count / targetCount) * 100).toFixed(0) }%`
+          progressBarEmpty.style.width = `${100 -(((count / targetCount) * 100) )}%`
           if (count == targetCount){
           totalCount ++
           count = 0
@@ -178,7 +209,6 @@
           mainCircle.style.fontSize = "45px" 
           totalCounted.innerHTML  = totalCount
           mainCircle.innerHTML = count
-
           }
           
         }
@@ -189,6 +219,7 @@
         mainCircle.innerHTML = count
         totalCounted.innerHTML  = totalCount 
       })
+
 
 
 
